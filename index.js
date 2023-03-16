@@ -78,6 +78,47 @@ class Projectile {
     }
 }
 
+class Particle {
+    constructor({position, velocity, radius, color}){
+        this.position = position
+        this.velocity = velocity
+        this.radius = radius
+        this.color = color
+    }
+
+    draw() {
+        c.beginPath()
+        c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2 )
+        c.fillStyle = 'red'
+        c.fill()
+        c.closePath()
+    }
+    update() {
+        this.draw()
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+    }
+}
+
+class InvaderProjectile {
+    constructor({position, velocity}){
+        this.position = position
+        this.velocity = velocity
+        this.width = 3
+        this.height = 10
+    }
+
+    draw() {
+        c.fillStyle = 'white'
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+    update() {
+        this.draw()
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+    }
+}
+
 class Invader {
     constructor({position}) {
 
@@ -116,6 +157,19 @@ class Invader {
             this.position.x += velocity.x
             this.position.y += velocity.y
         }
+    }
+
+    shoot(invaderProjectiles) {
+        invaderProjectiles.push(new InvaderProjectile({
+            position: {
+                x: this.position.x + this.width / 2,
+                y: this.position.y + this.height
+            },
+            velocity: {
+                x:0,
+                y:5,
+            }
+        }))
     }
 }
 
@@ -168,6 +222,8 @@ const player = new Player()
 const projectiles = []
 // const invader = new Invader()
 const grids = []
+const invaderProjectiles = []
+const particles = []
 
 const keys = {
     a:{
@@ -191,6 +247,10 @@ function animate() {
     c.fillRect(0,0, canvas.width, canvas.height)
     player.update();
     
+    particles.forEach((particle)=>{
+        particle.update()
+    })
+    
     projectiles.forEach((projectile, index)=>{
         if(projectile.position.y + projectile.radius <= 0 ) {
             setTimeout(()=>{
@@ -200,10 +260,33 @@ function animate() {
         else {
             projectile.update()
         }
+
+
+    })  
+
+
+    invaderProjectiles.forEach((invaderProjectile, index) =>{
+        if(invaderProjectile.position.y + invaderProjectile.height >= canvas.height ) {
+            setTimeout(()=>{
+                invaderProjectiles.splice(index, 1)
+            }, 0)
+        }
+        else {
+            invaderProjectile.update()
+        }
+        if(invaderProjectile.position.y + invaderProjectile.height >= player.position.y 
+            && invaderProjectile.position.x + invaderProjectile.width >= player.position.x
+            && invaderProjectile.position.x <= player.position.x + player.width) {
+                console.log("you lose")
+        }
     })
 
     grids.forEach((grid, gridIndex) =>{
         grid.update()
+
+        if(frame % 100 === 0 && grid.invaders.length > 0) {
+            grid.invaders[Math.floor(Math.random() * grid.invaders.length)].shoot(invaderProjectiles)
+        }
 
         grid.invaders.forEach((invader, i) =>{
             invader.update({velocity: grid.velocity})
@@ -255,13 +338,15 @@ function animate() {
         player.rotation = 0
     }
 
-    
+    // random enemy spawns
     if(frame % randomInterval === 0) {
         grids.push(new Grid())
 
         frame = 0
         randomInterval = Math.floor(Math.random() * 500) + 500
     }
+    // random projectiles from enemy
+
     
     frame++
 }
