@@ -79,12 +79,13 @@ class Projectile {
 }
 
 class Particle {
-    constructor({ position, velocity, radius, color }) {
+    constructor({ position, velocity, radius, color, fade }) {
         this.position = position
         this.velocity = velocity
         this.radius = radius
         this.color = color
-        this.opacity = 1
+        this.opacity = 1,
+        this.fade = fade
     }
 
     draw() {
@@ -101,7 +102,8 @@ class Particle {
         this.draw()
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
-        this.opacity -= 0.01
+        
+        if(this.fade) this.opacity -= 0.01
     }
 }
 
@@ -244,6 +246,23 @@ const keys = {
 
 let frame = 0
 let randomInterval = Math.floor(Math.random() * 500) + 500
+for (let i = 0; i < 101; i++) {
+    particles.push(new Particle({
+        position: {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+        },
+        velocity: {
+            x: 0,
+            y: 0.3,
+        },
+        radius: 2,
+        color: 'white',
+        fade: false,
+
+    }))
+}
+
 function createParticles({ object, color }) {
     for (let i = 0; i < 15; i++) {
         particles.push(new Particle({
@@ -256,7 +275,8 @@ function createParticles({ object, color }) {
                 y: (Math.random() - 0.5) * 2,
             },
             radius: Math.random() * 3,
-            color: color || '#BAA0DE'
+            color: color || '#BAA0DE',
+            fade: true,
 
         }))
     }
@@ -271,6 +291,11 @@ function animate() {
     player.update();
 
     particles.forEach((particle, i) => {
+        if(particle.position.y - particle.radius >= canvas.height) {
+            particle.position.x = Math.random() * canvas.width
+            particle.position.y = -particle.radius
+        }
+        
         if (particle.opacity <= 0) {
             setTimeout(() => {
                 particles.splice(i, 1)
