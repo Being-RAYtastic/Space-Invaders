@@ -1,5 +1,6 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
+const scoreVal = document.querySelector('#scoreVal')
 
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -12,6 +13,7 @@ class Player {
             y: 0,
         }
         this.rotation = 0
+        this.opacity = 1
 
         const image = new Image()
         image.src = 'assets/img/spaceship.png'
@@ -31,6 +33,7 @@ class Player {
         // c.fillStyle = 'red'
         // c.fillRect(this.position.x, this.position.y, this.width, this.height)
         c.save()
+        c.globalAlpha = this.opacity
         c.translate(
             player.position.x + player.width / 2,
             player.position.y + player.height / 2,
@@ -231,6 +234,11 @@ const projectiles = []
 const grids = []
 const invaderProjectiles = []
 const particles = []
+let game = {
+    over: false,
+    active: true,
+}
+let score = 0
 
 const keys = {
     a: {
@@ -256,7 +264,7 @@ for (let i = 0; i < 101; i++) {
             x: 0,
             y: 0.3,
         },
-        radius: 2,
+        radius: Math.random() * 2,
         color: 'white',
         fade: false,
 
@@ -284,6 +292,7 @@ function createParticles({ object, color }) {
 
 
 function animate() {
+    if (game.active) {
     requestAnimationFrame(animate)
 
     c.fillStyle = 'black'
@@ -332,9 +341,17 @@ function animate() {
         if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y
             && invaderProjectile.position.x + invaderProjectile.width >= player.position.x
             && invaderProjectile.position.x <= player.position.x + player.width) {
-            setTimeout(() => {
+                // console.log("You Lose")
+                setTimeout(() => {  
                 invaderProjectiles.splice(index, 1)
-            }, 0)
+                player.opacity = 0,
+                game.over = true  
+                }, 0)
+
+                setTimeout(() => {  
+                    game.active = false
+                    }, 2000)
+
             createParticles({
                 object: player,
                 color: 'white'
@@ -367,22 +384,29 @@ function animate() {
                         const projectileFound = projectiles.find(
                             (projectile2) => projectile2 === projectile)
 
-                        createParticles({
+                        if(invaderFound &&  projectileFound) {
+                            score += 100
+                            scoreVal.innerHTML = score
+                            
+                            createParticles({
                             object: invader,
-                        })
-                        grid.invaders.splice(i, 1)
-                        projectiles.splice(j, 1)
+                            })
+                            grid.invaders.splice(i, 1)
+                            projectiles.splice(j, 1)
 
-                        if (grid.invaders.length > 0) {
-                            const firstInvader = grid.invaders[0]
-                            const lastInvader = grid.invaders[grid.invaders.length - 1]
-                            grid.width = lastInvader.position.x - firstInvader.position.x + lastInvader.width
-                            grid.position.x = firstInvader.position.x
-                        }
-                        else {
-                            grids.splice(gridIndex, 1)
+
+                            if (grid.invaders.length > 0) {
+                                const firstInvader = grid.invaders[0]
+                                const lastInvader = grid.invaders[grid.invaders.length - 1]
+                                grid.width = lastInvader.position.x - firstInvader.position.x + lastInvader.width
+                                grid.position.x = firstInvader.position.x
+                            }
+                            else {
+                                grids.splice(gridIndex, 1)
+                            }
                         }
                     }, 0)
+                    
                 }
             })
         })
@@ -415,12 +439,15 @@ function animate() {
 
     frame++
 }
+}
 
 
 animate()
 
+
 window.addEventListener('keydown', (event) => {
     event.preventDefault()
+    if(!game.over) {
     switch (event.key) {
         case 'a':
             keys.a.pressed = true
@@ -443,6 +470,7 @@ window.addEventListener('keydown', (event) => {
             // console.log(projectiles)
 
             break
+    }
     }
 })
 
