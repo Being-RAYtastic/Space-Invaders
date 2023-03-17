@@ -4,7 +4,7 @@
 }
 
 .score  {
-    position: fixed;
+    position: absolute;
     z-index: 10;
     color: white;
     left: 10px;
@@ -12,3 +12,17 @@
     font-family: sans-serif;
     font-size: 14px;
 }
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: black;
+}
+
+.container {
+    position: relative;
+}
+
