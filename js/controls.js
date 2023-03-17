@@ -55,11 +55,11 @@ window.addEventListener('keyup', (event) => {
 
 function controls_conditions() {
     if (keys.a.pressed && player.position.x >= 0) {
-        player.velocity.x = -7
+        player.velocity.x = -8
         player.rotation = -0.15
     }
     else if (keys.d.pressed && player.position.x + player.width <= canvas.width) {
-        player.velocity.x = 7
+        player.velocity.x = 8
         player.rotation = 0.15
     }
     else {

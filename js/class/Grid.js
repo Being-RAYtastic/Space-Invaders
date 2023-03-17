@@ -5,7 +5,7 @@ class Grid {
             y: 0,
         }
         this.velocity = {
-            x: 3,
+            x: (Math.random() * 5) + 3,
             y: 0,
         }
         this.invaders = []
