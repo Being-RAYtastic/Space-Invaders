@@ -50,3 +50,36 @@ function earn_score(perHitValue) {
     score += perHitValue
     scoreVal.innerHTML = score
 }
+
+function playerLost() {
+    // console.log("You Lose")
+    setTimeout(() => {  
+        player.opacity = 0,
+        game.over = true  
+    }, 0)
+
+    setTimeout(() => {  
+        game.active = false
+    }, 2000)
+    
+    playerDie_sound.play()    
+    createParticles({
+        object: player,
+        color: 'white',
+        fade: true,
+    })
+    background_music.pause()
+    lose_music.play()
+
+    const game_over_box =  document.querySelector('.game-over-box')
+    game_over_box.style.opacity = 1
+    game_over_box.style.visibility = 'visible'
+    const currentScore = document.querySelector('#currentScore')
+    currentScore.innerHTML = score
+    
+    const replay_btn = document.querySelector('.replay-btn')
+    replay_btn.style.opacity = 1
+    replay_btn.style.visibility = 'visibles'
+
+
+}
