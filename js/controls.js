@@ -21,6 +21,7 @@ window.addEventListener('keydown', (event) => {
                 keys.d.pressed = true
                 break
             case ' ':
+
                 projectiles.push(
                     new Projectile({
                         position: {
@@ -30,8 +31,10 @@ window.addEventListener('keydown', (event) => {
                         velocity: {
                             x: 0,
                             y: -10,
-                        }
+                        },
                     }))
+                    playerProjectileSound.play()
+                    playerProjectileSound.currentTime = 0
                 // console.log(projectiles)
 
                 break
