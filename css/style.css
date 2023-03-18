@@ -19,7 +19,15 @@ body {
     justify-content: center;
     align-items: center;
     margin: auto;
-    background-color: black;
+    background: black;
+}
+
+canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 80vw;
 }
 
 .container {
@@ -35,6 +43,7 @@ body {
     align-items: center;
     padding: 1rem;
     border-radius: 1rem;
+    transition: 0.5s ease-in-out;
 }
 
 .game-over-box button {
@@ -70,4 +79,14 @@ body {
     text-align: center;
 }
 
+/* RESPONSIVE CSS */
+@media screen and (max-width:950px){
+    
+    body {
+        overflow: auto;
+    }
 
+    canvas {
+        width: 100vw;
+    }
+}
