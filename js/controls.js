@@ -7,6 +7,9 @@ const keys = {
     },
     space: {
         pressed: false
+    },
+    enter:{
+        pressed: false
     }
 }
 
@@ -38,6 +41,7 @@ window.addEventListener('keydown', (event) => {
                     keys.space.pressed = true
                 }
                 break
+            
         }
     }
 })
@@ -52,6 +56,9 @@ window.addEventListener('keyup', (event) => {
             break
         case ' ':
             keys.space.pressed = false
+            break
+        case 'Enter':
+            keys.enter.pressed = false
             break
     }
 })

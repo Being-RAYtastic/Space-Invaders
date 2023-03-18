@@ -81,5 +81,4 @@ function playerLost() {
     replay_btn.style.opacity = 1
     replay_btn.style.visibility = 'visibles'
 
-
 }
