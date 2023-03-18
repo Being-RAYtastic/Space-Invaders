@@ -25,6 +25,7 @@ let score = 0
 background_music.play()
 background_stars()
 
+window.onload = () =>{
 function animate() {
     if (game.active) {
         requestAnimationFrame(animate)
@@ -116,9 +117,8 @@ function animate() {
 }
 
 
-window.onload = animate()
-
-
+animate()
+}
 
 
 
