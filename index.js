@@ -39,6 +39,9 @@ function animate() {
         invaderProjectiles_update()
 
         // grids update
+        setTimeout(() => {
+            
+        
         grids.forEach((grid, gridIndex) => {
             grid.update()
 
@@ -105,6 +108,7 @@ function animate() {
                 }
             })
         })
+    }, 2000)
 
 
 
