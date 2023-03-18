@@ -116,7 +116,7 @@ function animate() {
 }
 
 
-animate()
+window.onload = animate()
 
 
 
