@@ -35,18 +35,8 @@ function invaderProjectiles_update() {
                 // console.log("You Lose")
                 setTimeout(() => {  
                     invaderProjectiles.splice(index, 1)
-                    player.opacity = 0,
-                    game.over = true  
                 }, 0)
-
-                setTimeout(() => {  
-                    game.active = false
-                    }, 2000)
-
-                createParticles({
-                    object: player,
-                    color: 'white'
-                })
+                playerLost()
         }
     })
 }

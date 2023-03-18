@@ -33,8 +33,8 @@ window.addEventListener('keydown', (event) => {
                                 y: -10,
                             },
                         }))
-                        playerProjectileSound.play()
-                        playerProjectileSound.currentTime = 0
+                        playerProjectile_sound.play()
+                        playerProjectile_sound.currentTime = 0
                     keys.space.pressed = true
                 }
                 break

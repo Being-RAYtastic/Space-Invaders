@@ -99,21 +99,8 @@ function animate() {
                 if (invader.position.y + invader.height >= player.position.y
                     && invader.position.x + invader.width >= player.position.x
                     && invader.position.x <= player.position.x + player.width) {
-                        // console.log("You Lose")
-                        setTimeout(() => {  
-                            player.opacity = 0,
-                            game.over = true  
-                        }, 0)
-        
-                        setTimeout(() => {  
-                            game.active = false
-                            }, 2000)
-        
-                        createParticles({
-                            object: player,
-                            color: 'white',
-                            fade: true,
-                        })
+                        
+                        playerLost()
                 }
             })
         })
@@ -130,6 +117,8 @@ function animate() {
 
 
 animate()
+
+
 
 
 

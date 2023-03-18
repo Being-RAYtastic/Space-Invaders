@@ -28,10 +28,7 @@ function projectiles_update() {
                 projectiles.splice(index, 1)
             }, 0)
         }
-        else {
-            projectile.update()
-            
-        }
+        else projectile.update()
         
     })
 }

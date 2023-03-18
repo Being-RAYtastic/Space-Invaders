@@ -13,18 +13,25 @@
     <div class="container">
         <p class="score">
             <span>Score: </span> 
-            <span id="scoreVal">0</span>
+            <span id="scoreVal"> 0</span>
         </p>
     
         <canvas></canvas>
+    </div>
+
+    <div class="game-over-box">
+        <p><span>Current Score: </span> <span id="currentScore">0</span></p>
+        <p><span>High Score: </span> <span id="highScore">0</span> </p>
+        <button onclick="location.reload()">Play Again</button>
     </div>
 
     
     <!-- Audios -->
     <audio src="assets/sounds/ShootingStar.mp3" id="background_music"></audio>
     <audio src="assets/sounds/playerProjectile.mp3" id="playerProjectileSound"></audio>
-    
-    
+    <audio src="assets/sounds/explode.wav" id="playerDie"></audio>
+    <audio src="assets/sounds/lose.mp3" id="lose"></audio>
+
     <!-- Scripts -->
     <script src="js/class/Player.js" defer></script>
     <script src="js/class/Projectile.js" defer></script>
@@ -33,6 +40,7 @@
     <script src="js/class/Particle.js" defer></script>
     <script src="js/class/Grid.js" defer></script>
 
+    <script src="js/highscore.js"></script>
     <script src="js/sounds.js"></script>
     <script src="js/controls.js" defer></script>
     <script src="js/functions.js" defer></script>
