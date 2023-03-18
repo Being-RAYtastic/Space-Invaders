@@ -17,11 +17,12 @@ let game = {
     active: true,
 }
 
+const projectileDelay = 1000
 let frame = 0
 let randomInterval = Math.floor(Math.random() * 500) + 500
 let score = 0
 
-// background_music.play()
+background_music.play()
 background_stars()
 
 function animate() {

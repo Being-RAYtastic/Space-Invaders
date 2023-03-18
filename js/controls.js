@@ -21,22 +21,22 @@ window.addEventListener('keydown', (event) => {
                 keys.d.pressed = true
                 break
             case ' ':
-
-                projectiles.push(
-                    new Projectile({
-                        position: {
-                            x: player.position.x + player.width / 2,
-                            y: player.position.y,
-                        },
-                        velocity: {
-                            x: 0,
-                            y: -10,
-                        },
-                    }))
-                    playerProjectileSound.play()
-                    playerProjectileSound.currentTime = 0
-                // console.log(projectiles)
-
+                if(!keys.space.pressed) {
+                    projectiles.push(
+                        new Projectile({
+                            position: {
+                                x: player.position.x + player.width / 2,
+                                y: player.position.y,
+                            },
+                            velocity: {
+                                x: 0,
+                                y: -10,
+                            },
+                        }))
+                        playerProjectileSound.play()
+                        playerProjectileSound.currentTime = 0
+                    keys.space.pressed = true
+                }
                 break
         }
     }
@@ -68,5 +68,9 @@ function controls_conditions() {
     else {
         player.velocity.x = 0
         player.rotation = 0
+    }
+    if (keys.space.pressed) {
+
+        // console.log(projectiles)
     }
 }
