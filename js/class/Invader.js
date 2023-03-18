@@ -19,6 +19,7 @@ class Invader {
                 y: position.y,
             }
         }
+
     }
     draw() {
         // c.fillStyle = 'red'

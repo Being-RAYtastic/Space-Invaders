@@ -4,7 +4,7 @@ function stopaudio(fileName) {
 }
 
 const playerProjectileSound = new Audio('../assets/sounds/playerProjectile.mp3')
-playerProjectileSound.volume = 0.3
+playerProjectileSound.volume = 0.2
 
 
 

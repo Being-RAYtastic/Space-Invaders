@@ -15,12 +15,13 @@ class Player {
             this.image = image
             this.width = image.width * scale
             this.height = image.height * scale
-
+            
             this.position = {
                 x: canvas.width / 2 - this.width,
                 y: canvas.height - this.height - 20,
             }
         }
+
     }
     draw() {
         // c.fillStyle = 'red'
