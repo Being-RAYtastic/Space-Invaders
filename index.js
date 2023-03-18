@@ -21,6 +21,7 @@ let frame = 0
 let randomInterval = Math.floor(Math.random() * 500) + 500
 let score = 0
 
+background_music.play()
 background_stars()
 
 function animate() {
@@ -40,7 +41,7 @@ function animate() {
             grid.update()
 
             // random invader shooting
-            if (frame % 100 === 0 && grid.invaders.length > 0) {
+            if (frame % Math.floor((Math.random() * 100) + 100) === 0 && grid.invaders.length > 0) {
                 grid.invaders[Math.floor(Math.random() * grid.invaders.length)].shoot(invaderProjectiles)
             }
 
@@ -72,6 +73,8 @@ function animate() {
                                 })
                                 grid.invaders.splice(i, 1)
                                 projectiles.splice(j, 1)
+                                
+                                
 
                                 // rearranging invaders grid position
                                 if (grid.invaders.length > 0) {

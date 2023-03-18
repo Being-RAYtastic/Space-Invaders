@@ -1,5 +1,5 @@
 class Projectile {
-    constructor({ position, velocity }) {
+    constructor({ position, velocity}) {
         this.position = position
         this.velocity = velocity
         this.radius = 4
@@ -20,7 +20,10 @@ class Projectile {
 }
 
 function projectiles_update() {
+   
     projectiles.forEach((projectile, index) => {
+        
+        
         if (projectile.position.y + projectile.radius <= 0) {
             setTimeout(() => {
                 projectiles.splice(index, 1)
@@ -28,8 +31,8 @@ function projectiles_update() {
         }
         else {
             projectile.update()
+            
         }
-
-
+        
     })
 }
