@@ -21,7 +21,7 @@ let frame = 0
 let randomInterval = Math.floor(Math.random() * 500) + 500
 let score = 0
 
-background_music.play()
+// background_music.play()
 background_stars()
 
 function animate() {
@@ -47,7 +47,7 @@ function animate() {
 
             grid.invaders.forEach((invader, i) => {
                 invader.update({ velocity: grid.velocity })
-
+                
                 // hitting invaders
                 projectiles.forEach((projectile, j) => {
                     if (
@@ -89,8 +89,31 @@ function animate() {
                             }
                         }, 0)
 
+
                     }
+
                 })
+
+                // inader physically hittig player when it touches player
+                if (invader.position.y + invader.height >= player.position.y
+                    && invader.position.x + invader.width >= player.position.x
+                    && invader.position.x <= player.position.x + player.width) {
+                        // console.log("You Lose")
+                        setTimeout(() => {  
+                            player.opacity = 0,
+                            game.over = true  
+                        }, 0)
+        
+                        setTimeout(() => {  
+                            game.active = false
+                            }, 2000)
+        
+                        createParticles({
+                            object: player,
+                            color: 'white',
+                            fade: true,
+                        })
+                }
             })
         })
 

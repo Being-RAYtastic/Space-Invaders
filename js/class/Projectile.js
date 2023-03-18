@@ -23,7 +23,6 @@ function projectiles_update() {
    
     projectiles.forEach((projectile, index) => {
         
-        
         if (projectile.position.y + projectile.radius <= 0) {
             setTimeout(() => {
                 projectiles.splice(index, 1)
