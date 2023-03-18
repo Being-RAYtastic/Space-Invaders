@@ -3,11 +3,11 @@ function stopaudio(fileName) {
     fileName.currentTime = 0;
 }
 
-const playerProjectileSound = new Audio('../assets/sounds/playerProjectile.mp3')
-playerProjectileSound.volume = 0.2
+const playerProjectileSound = document.getElementById('playerProjectileSound')
+playerProjectileSound.volume = 0.1
 
 
 
-const background_music =  new Audio('../assets/sounds/background.mp3')
-background_music.volume = 0.4
+const background_music =  document.getElementById('background_music')
+background_music.volume = 0.1
 background_music.loop = true
