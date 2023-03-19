@@ -20,6 +20,7 @@ let game = {
 const projectileDelay = 1000
 let frame = 0
 let randomInterval = Math.floor(Math.random() * 500) + 500
+const superPointsRequired = 200
 let superPoints = 0
 let score = 0
 

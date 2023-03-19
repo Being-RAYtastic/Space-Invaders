@@ -98,7 +98,6 @@ function controls_conditions() {
                 superPoints = 0
                 super_val_container.style.color = 'white'
                 superVal.innerHTML = superPoints
-
             }, 5000)
             
         }
