@@ -89,6 +89,6 @@ function playerLost() {
     
     const replay_btn = document.querySelector('.replay-btn')
     replay_btn.style.opacity = 1
-    replay_btn.style.visibility = 'visibles'
+    replay_btn.style.visibility = 'visible'
 
 }
