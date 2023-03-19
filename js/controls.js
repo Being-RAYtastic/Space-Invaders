@@ -42,7 +42,10 @@ window.addEventListener('keydown', (event) => {
                 }
                 break
             
-        }
+            case 'Enter':
+                keys.enter.pressed = true      
+               break
+        }   
     }
 })
 
@@ -57,11 +60,10 @@ window.addEventListener('keyup', (event) => {
         case ' ':
             keys.space.pressed = false
             break
-        case 'Enter':
-            keys.enter.pressed = false
-            break
     }
 })
+
+
 
 function controls_conditions() {
     if (keys.a.pressed && player.position.x >= 0) {
@@ -76,8 +78,32 @@ function controls_conditions() {
         player.velocity.x = 0
         player.rotation = 0
     }
-    if (keys.space.pressed) {
 
-        // console.log(projectiles)
+    if (keys.enter.pressed) {
+        if (superPoints >= 100) {
+            projectiles.push(
+                new Projectile({
+                    position: {
+                        x: player.position.x + player.width / 2,
+                        y: player.position.y,
+                    },
+                    velocity: {
+                        x: 0,
+                        y: -12.5,
+                    },
+                }))
+    
+            setTimeout(() => {
+                keys.enter.pressed = false
+                superPoints = 0
+                super_val_container.style.color = 'white'
+                superVal.innerHTML = superPoints
+
+            }, 5000)
+            
+        }
+        else {
+            keys.enter.pressed = false
+        }
     }
 }

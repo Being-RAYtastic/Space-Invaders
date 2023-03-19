@@ -45,10 +45,21 @@ function background_stars() {
     }
 }
 
+const scoreVal = document.querySelector('#scoreVal')
+const super_val_container = document.querySelector('.super-val-container')
+const superVal = document.querySelector('#superVal')
 function earn_score(perHitValue) {
-    const scoreVal = document.querySelector('#scoreVal')
     score += perHitValue
     scoreVal.innerHTML = score
+
+    superPoints += perHitValue
+    superVal.innerHTML = superPoints
+
+    if(superPoints >= 100) {
+        super_val_container.style.color = 'yellow'
+        superVal.innerHTML = 100
+    }
+    
 }
 
 function playerLost() {
