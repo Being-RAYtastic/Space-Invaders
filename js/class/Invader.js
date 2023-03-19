@@ -5,6 +5,10 @@ class Invader {
             x: 0,
             y: 0,
         }
+        this.position = {
+            x: position.x,
+            y: position.y,
+        }
 
         const image = new Image()
         image.src = 'assets/img/invader.png'
@@ -14,10 +18,7 @@ class Invader {
             this.width = image.width * scale
             this.height = image.height * scale
 
-            this.position = {
-                x: position.x,
-                y: position.y,
-            }
+
         }
 
     }
