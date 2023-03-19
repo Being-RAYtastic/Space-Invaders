@@ -54,10 +54,9 @@ function earn_score(perHitValue) {
 
     superPoints += perHitValue
     superVal.innerHTML = superPoints
-
-    if(superPoints >= 100) {
+    if(superPoints >= superPointsRequired) {
         super_val_container.style.color = 'yellow'
-        superVal.innerHTML = 100
+        superVal.innerHTML = superPointsRequired
     }
     
 }
