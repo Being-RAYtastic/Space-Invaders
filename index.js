@@ -20,7 +20,9 @@ let game = {
 const projectileDelay = 1000
 let frame = 0
 let randomInterval = Math.floor(Math.random() * 500) + 500
+let superPoints = 0
 let score = 0
+
 
 background_music.play()
 background_stars()
@@ -68,7 +70,7 @@ window.onload = () =>{
                                     (projectile2) => projectile2 === projectile)
 
                                 if(invaderFound &&  projectileFound) {
-                                    earn_score(100)
+                                    earn_score(10)
 
                                     createParticles({
                                         object: invader,
