@@ -35,7 +35,7 @@ canvas {
 }
 
 .game-over-box {
-    opacity: 0 ;
+    opacity: 0;
     visibility: hidden;
     background: rgba(255, 255, 255, 0.1);       
     position: absolute;
