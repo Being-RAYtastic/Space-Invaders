@@ -22,7 +22,7 @@ function random_enemy_spawns() {
         grids.push(new Grid())
 
         frame = 0
-        randomInterval = Math.floor(Math.random() * 100) + 50  // decrease the values to make aliens spawn faster and move faster
+        randomInterval = Math.floor(Math.random() * 100) + 50  // decrease the values to make aliens spawn faster and move faster!!
     }
 }
 
